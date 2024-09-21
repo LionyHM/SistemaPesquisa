@@ -1,0 +1,31 @@
+@using Microsoft.AspNetCore.Identity
+@{
+    var setorNome = Context.Session.GetString("SetorNome") != null ? Context.Session.GetString("SetorNome") : " ";
+    var setorId = Context.Session.GetString("SetorId") != null ? Context.Session.GetString("SetorId") : "";
+}
+
+
+@inject SignInManager<IdentityUser> SignInManager
+<div class="m-auto">
+    @if(SignInManager.IsSignedIn(User))
+    {
+        <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
+              method="post" class="navbar-right">
+            <ul class="nav navbar-nav navbar-right mr-auto mr-auto mr-auto mt-auto d-inline">
+                <div class="text-white mb-0 p-0 m-0">
+                    <small style="font-size: 15px;"><strong>Setor:</strong> @setorNome.ToUpper() &nbsp;</small>
+                </div>              
+                <button type="submit" class="text-white btn pl-1 pr-1 w-100 bg-danger">
+                    <small>Sair</small>
+                </button>       
+            </ul>
+        </form>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right mr-auto ml-auto bg-info mt-5 p-1 rounded">
+            <a class="nav-link text-light mr-auto ml-auto" asp-controller="Account" asp-action="Login" asp-route-returnUrl=@string.Format("{0}{1}", Context.Request.Path, Context.Request.QueryString) style="color: white;">&nbsp; Log in &nbsp;</a>
+        </ul>
+    }
+
+</div>

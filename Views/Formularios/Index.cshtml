@@ -1,0 +1,293 @@
+﻿@model IEnumerable<SistemaPesquisa.Models.Formulario>
+
+@{
+    ViewData["Title"] = "Home Page";
+    var setor = Context.Session.GetString("SetorNome");
+    var idsetor = int.Parse(Context.Session.GetString("SetorId"));
+    var itemForm = 1;
+}
+
+@*  <h1>Index</h1>  *@
+<div id="main">
+    <div class="text-center" style="margin-top: 100px;">
+        <p id="numForm">@itemForm</p>
+    </div>
+
+    <div id="setorPesquisa">@idsetor</div>
+    <div id="setorPesquisaNome">@setor</div>
+    <div class="carousel-container">
+        <div class="carousel-wrapper">
+      
+            @foreach (var (item, index) in Model.Select((item, index) => (item, index)))
+            {
+                @if (item.Setor.Id != idsetor)
+                {
+                    <div class="carousel-card">
+                        <div  id="idForm">@item.Id</div>
+                        <label class="float-right lead" style="transform: translate(50%,-70%)">
+                            Aplica-se?
+                            <select id="aplica-se_@item.Setor.Id" class="form-control aplica-se" style="max-width: 100px;">
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </label>
+
+                        <h3>@Html.DisplayFor(modelItem => item.Setor.Nome)</h3>
+                        <div>
+                            <p hidden><strong>Finalizado:</strong> @Html.DisplayFor(modelItem => item.Finalizado)</p>
+                            <label class="d-flex position-relative">
+                                <strong>Nota:</strong>
+                                <input type="range" id="nota_@item.Setor.Id" min="0" max="10" step="1" value="@Html.DisplayFor(modelItem => item.Nota)" name="Nota" class="nota ml-2 z-2 form-control" style="max-width: 300px; transform: translateY(-16%); outline:none" />
+                                <span id="nota_text_@item.Setor.Id" style="font-size: 20px;" class="ml-2 notaValue">@Html.DisplayFor(modelItem => item.Nota) 5</span>
+                                <span id="smiley_@item.Setor.Id" style="font-size: 40px;" class="smiley ml-2 position-absolute">😐</span>
+                            </label>
+                            <label style="width: 100%">
+                                Justificativa:
+                                <textarea id="justificativa_@item.Setor.Id" class="form-control justificativa" style="width: 100%;"></textarea>
+                            </label>
+                            <button class="save-button bg-info" data-id="@item.Setor.Id">
+                                <i class="fas fa-save"></i>
+                                Salvar
+                            </button>
+                        </div>
+                        <p id="dat_atualicacao_@item.Setor.Id" class="position-absolute mt-3 w-50"><strong></strong></p>
+                    </div>
+                }
+            }
+        </div>
+        <div class="carousel-nav">
+        <button id="prevBtn" onclick="numPrevBtn(this)" disabled><img src="/images/seta-direita.png" alt="Alternate Text" /></button>
+        <button id="nextBtn" onclick="nextPrevBtn(this)"><img src="/images/seta-direita.png" alt="Alternate Text" /></button>
+        </div>
+    </div>
+    <div id="finishsave" class="text-center mt-5" hidden>
+        <button class="btn btn-danger ml-auto"><i class="fas fa-save"></i> Finalizar</button>
+    </div>
+</div>
+<script>
+    const wrapper = document.querySelector('.carousel-wrapper');
+    const cards = document.querySelectorAll('.carousel-card');
+    const totalCards = cards.length;
+    let currentIndex = 0;
+
+    function showCard(index) {
+        wrapper.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextPrevBtn(e) {
+        if (parseInt(document.getElementById('numForm').textContent) < document.querySelectorAll('.nota').length) {
+            document.getElementById('numForm').textContent = (parseInt(document.getElementById('numForm').textContent) + 1) + '/' + document.querySelectorAll('.nota').length
+        }
+
+        if (parseInt(document.getElementById('numForm').textContent) == document.querySelectorAll('.nota').length) {
+            document.getElementById('finishsave').removeAttribute('hidden')
+            e.disabled = true;
+        } 
+
+        if (parseInt(document.getElementById('numForm').textContent) > 1) {
+            document.getElementById('prevBtn').disabled = false;
+        }
+        
+    }
+
+    function numPrevBtn(e) {
+        if (parseInt(document.getElementById('numForm').textContent) > 1)
+        {
+            document.getElementById('numForm').textContent = (parseInt(document.getElementById('numForm').textContent) - 1) + '/' + document.querySelectorAll('.nota').length
+        }
+        if (parseInt(document.getElementById('numForm').textContent) == 1) {
+
+            e.disabled = true;
+        }
+        if (parseInt(document.getElementById('numForm').textContent) < document.querySelectorAll('.nota').length) {
+            document.getElementById('nextBtn').disabled = false;
+            document.getElementById('finishsave').setAttribute('hidden', 'true')
+        }
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalCards - 1;
+        showCard(currentIndex);
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        currentIndex = (currentIndex < totalCards - 1) ? currentIndex + 1 : 0;
+        showCard(currentIndex);
+    });
+
+        document.getElementById('numForm').textContent = document.getElementById('numForm').textContent + '/' + document.querySelectorAll('.nota').length
+ 
+        for (let x = 0; x < document.querySelectorAll('.nota').length; x++) {
+   
+            document.querySelectorAll('.nota')[x].addEventListener('input', function () {
+                let value = this.value;
+                document.querySelectorAll('.notaValue')[x].textContent = value;
+            
+                // Carinhas diferentes baseadas no valor
+                let smiley = '😐'; // Default
+                if (value <= 2) {
+                    smiley = '😞'; // Muito Triste
+                } else if (value <= 4) {
+                    smiley = '🙁'; // Triste
+                } else if (value <= 6) {
+                    smiley = '😐'; // Neutro
+                } else if (value <= 8) {
+                    smiley = '🙂'; // Feliz
+                } else {
+                    smiley = '🤩'; // Muito Feliz
+                }
+               
+                document.querySelectorAll('.smiley')[x].textContent = smiley;       
+
+            });
+        }
+    
+    // Inicializar o carrossel mostrando o primeiro cartão
+    showCard(currentIndex);
+
+    document.querySelectorAll('.save-button').forEach(button => {
+        button.addEventListener('click', async () => {
+            const id = button.getAttribute('data-id');
+            const nota = button.closest('.carousel-card').querySelector('.nota').value;
+            const justificativa = button.closest('.carousel-card').querySelector('.justificativa').value;
+            const aplicaSe = button.closest('.carousel-card').querySelector('.aplica-se').value == "Sim" ? true : false;
+            const idForm = parseInt(document.getElementById('setorPesquisa').textContent)
+
+            const formulario = {
+                Id: idForm,
+                Nota: parseInt(nota, 10),
+                NotaDescricao: justificativa,
+                // Adicione outros campos necessários aqui
+                NaoSeAplica: aplicaSe
+            };
+
+            try {
+                const response = await fetch(`/Formularios/Edit/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'                        
+                    },
+                    body: JSON.stringify(formulario)
+                });
+
+                console.log(response)
+                if (response) {
+                    // Faça algo com o resultado, se necessário
+                    const result = await response.json();
+                    console.log(result)
+                    // Faça algo com o resultado, se necessário
+                    
+                    let dataFormatadaAtualizada = formatDate(result)
+                    if (dataFormatadaAtualizada != '01/01/2000, 00:00:00')
+                        document.getElementById('dat_atualicacao_' + id).textContent = 'Salvo: ' + dataFormatadaAtualizada;
+
+                    console.log('Formulario salvo com sucesso');
+                } else {
+                    console.error('Erro ao salvar o formulário', response.statusText);
+                }
+            } catch (error) {
+                console.error('Erro ao enviar a requisição', error);
+            }
+        });
+    });
+
+
+        document.querySelectorAll('.aplica-se').forEach(selection => {
+
+        selection.addEventListener('change', e => naoSeAplica(e))
+        })
+
+    function naoSeAplica(e) {
+
+        if (e.target != undefined) {
+            if (e.target.value == 'Não') {
+
+                let confirmar = confirm(`Tem certeza que o setor não aplica-se?`)
+                if (confirmar) {
+                    e.target.parentNode.parentNode.style.opacity = .5;
+                    e.target.parentNode.parentNode.querySelector('.save-button').click();
+                } else {
+                    e.target.value = 'Sim';
+                }
+            }
+            else {
+                e.target.parentNode.parentNode.style.opacity = 1;
+                e.target.value = 'Sim';
+            }
+
+        } else {
+            if (e.value == 'Não') {
+                e.parentNode.parentNode.style.opacity = .5;
+            }
+            else {
+                e.parentNode.parentNode.style.opacity = 1;
+                e.value = 'Sim';
+            }
+        }
+    }
+
+    document.querySelectorAll('.carousel-card').forEach(card => {
+        let idSetorFormulario = document.getElementById('setorPesquisa').textContent;
+        let idSetorItemFormulario = card.querySelector('.save-button').getAttribute('data-id');
+
+        async function getRespostasSalvas() 
+        {
+            try {
+                const response = await fetch(`/ItemFormularios/GetJustificativa/${idSetorItemFormulario}/${idSetorFormulario}`);
+
+                if (response != null) {
+                    const result = await response.json();
+                // Faça algo com o resultado, se necessário
+                    document.getElementById('justificativa_' + idSetorItemFormulario).textContent = result.notaDescricao;
+                    document.getElementById('nota_' + idSetorItemFormulario).value = result.nota;
+                    document.getElementById('nota_text_' + idSetorItemFormulario).textContent = result.nota != null ? result.nota : '5';
+                    document.getElementById('aplica-se_' + idSetorItemFormulario).value = result.naoSeAplica == true || result.naoSeAplica == null ? 'Sim' : 'Não';
+
+                    let dataFormatadaAtualizada = formatDate(result.dataAtualizacao)
+                    if (dataFormatadaAtualizada != '01/01/2000, 00:00:00')
+                        document.getElementById('dat_atualicacao_' + idSetorItemFormulario).textContent = 'Salvo: ' + dataFormatadaAtualizada;
+
+                    naoSeAplica(document.getElementById('aplica-se_' + idSetorItemFormulario))
+
+                    let smiley = '😐';
+
+                    if (result.nota <= 2 && result.nota != null) {
+                        smiley = '😞'; // Muito Triste
+                    } else if (result.nota <= 4 && result.nota != null) {
+                        smiley = '🙁'; // Triste
+                    } else if (result.nota <= 6 && result.nota != null) {
+                        smiley = '😐'; // Neutro
+                    } else if (result.nota <= 8 && result.nota != null) {
+                        smiley = '🙂'; // Feliz
+                    } else if (result.nota > 8 && result.nota != null) {
+                        smiley = '🤩'; // Muito Feliz
+                    }
+                     console.log(result.nota)
+                    document.getElementById('smiley_' + idSetorItemFormulario).textContent = smiley;
+                } else {
+                    console.error('Erro ao salvar o formulário', response.statusText);
+                }
+            } catch (error) {
+                console.error('Erro ao enviar a requisição', error);
+            }
+        };
+        getRespostasSalvas();
+       
+    })
+
+    function formatDate(date){
+        const data = new Date(date);
+
+        const dataFormatada = data.toLocaleString('pt-BR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+
+        return dataFormatada;
+    }
+
+</script>

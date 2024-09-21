@@ -1,0 +1,113 @@
+#main[b-z2y99z4d1x] {
+  /*  transform: translateY(25%)*/
+}
+
+#numForm[b-z2y99z4d1x] {
+    font-family: "Protest Guerrilla", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px !important;
+}
+.modal-content[b-z2y99z4d1x] {
+    padding: 20px;
+}
+
+.carousel-container[b-z2y99z4d1x] {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel-wrapper[b-z2y99z4d1x] {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-card[b-z2y99z4d1x] {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 16px;
+    border: 5px solid #18bc9c;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 46px;
+    background-color: #2c3e50;
+    color: white;
+}
+
+.carousel-nav[b-z2y99z4d1x] {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+    .carousel-nav button[b-z2y99z4d1x] {
+        /*   background-color: #007bff; */
+        border: none;
+        color: white;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        outline: none;
+    }
+
+        .carousel-nav button:hover[b-z2y99z4d1x] {
+            background-color: #688aac;
+        }
+
+#nextBtn img[b-z2y99z4d1x], #prevBtn img[b-z2y99z4d1x] {
+    width: 40px;
+    /*   transform: translatex(-10%); */
+}
+
+#prevBtn img[b-z2y99z4d1x] {
+    /*  transform: rotate(180deg) translatex(-10%); */
+    transform: rotate(180deg);
+    position: relative;
+}
+
+.smiley[b-z2y99z4d1x] {
+    left: 375px !important;
+    transform: translateY(-25%)
+}
+
+.save-button[b-z2y99z4d1x] {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 17px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 6px;
+    margin-right: auto
+}
+
+    .save-button i[b-z2y99z4d1x] {
+        margin-right: 8px;
+    }
+
+.numeroForms[b-z2y99z4d1x] {
+    /*  left: 50%; */
+    text-align: center;
+    color: white;
+}
+
+#numForm[b-z2y99z4d1x] {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+}

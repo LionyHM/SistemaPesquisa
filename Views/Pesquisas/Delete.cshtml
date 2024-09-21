@@ -1,0 +1,44 @@
+﻿@model SistemaPesquisa.Models.Pesquisa
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 class="mb-5">Deletar</h1>
+
+<h3>Você tem certeza que quer excuir essa Pesquisa?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Ano da pesquisa
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AnoPesquisa)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Finalizado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Finalizado)
+        </dd>
+        <dt class = "col-sm-2">
+            Data de Criacao
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataCriacao)
+        </dd>
+        <dt class = "col-sm-2">
+            Data da Atualizacao
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataAtualizacao)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Deletar" class="btn btn-danger" /> |
+        <a asp-action="Index">Voltar para lista</a>
+    </form>
+</div>

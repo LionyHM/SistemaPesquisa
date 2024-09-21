@@ -1,0 +1,113 @@
+﻿@model IEnumerable<SistemaPesquisa.Models.Setor>
+
+
+@{
+    ViewData["Title"] = "Setores";
+}
+
+<div id="main">
+    
+    <h4 class="mb-5">Setores</h4>
+
+ 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                   Usuário
+                </th>
+                <th>
+                    Ativo
+                </th>
+                <th>
+                    Data de Criação
+                </th>
+                <th>Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataCriacao)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                </td>
+            </tr>
+    }
+            <hr />
+        </tbody>
+    </table>
+            <div class="row">
+                <div class="col-md-10 d-flex mt-3">
+                    <p>
+                        <a style="box-shadow: 2px 5px 2px darkgreen;" class="btn btn-success" asp-action="Create">Criar novo setor</a>
+                    </p>
+                    <form id="myForm" method="post" action="/Pesquisas/Create">
+                        <div class="form-group">
+                            <input hidden class="form-control" value="" id="meta" name="meta" placeholder="Digite a meta" />
+                            <button style="box-shadow: 2px 5px 2px gray;" type="button" class="btn btn-secondary ml-3" data-toggle="modal" data-target="#myModal">Iniciar Pesquisa</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Digite a Meta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="modalMeta" class="form-control" placeholder="Digite a meta">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="submitForm()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Adiciona o JavaScript do Bootstrap e jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function submitForm() {
+        // Obtém o valor do campo do modal
+        var meta = document.getElementById('modalMeta').value;
+
+        // Se a meta não for vazia
+        if (meta.trim() !== "") {
+            // Preenche o campo do formulário
+            document.getElementById('meta').value = meta;
+
+            // Fecha o modal
+            $('#myModal').modal('hide');
+
+            // Envia o formulário
+            document.getElementById('myForm').submit();
+        } else {
+            // Se a meta estiver vazia, exibe uma mensagem de alerta
+            alert("A meta não pode estar vazia.");
+        }
+    }
+</script>

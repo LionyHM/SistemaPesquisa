@@ -1,0 +1,44 @@
+@model SistemaPesquisa.Models.Setor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4 class="mt-4 mb-3">Novo Setor</h4>
+<hr />
+<div class="row mt-4">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select  class="form-control" id="accountId" name="Usuario" asp-for="Usuario" >
+                    <!-- Adicione uma opção vazia se desejar -->
+                    <option value="">Selecione uma conta</option>
+                    
+                    <!-- Itere sobre a lista de accounts e crie uma opção para cada um -->
+                    @foreach (var account in ViewBag.Accounts)
+                    {
+                        <option value="@account.Id">@account.UserName</option>                        
+                    }
+                </select>
+                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Criar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar pata lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

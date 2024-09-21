@@ -1,0 +1,271 @@
+/* _content/SistemaPesquisa/Views/Formularios/Index.cshtml.rz.scp.css */
+#main[b-z2y99z4d1x] {
+  /*  transform: translateY(25%)*/
+}
+
+#numForm[b-z2y99z4d1x] {
+    font-family: "Protest Guerrilla", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px !important;
+}
+.modal-content[b-z2y99z4d1x] {
+    padding: 20px;
+}
+
+.carousel-container[b-z2y99z4d1x] {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel-wrapper[b-z2y99z4d1x] {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-card[b-z2y99z4d1x] {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 16px;
+    border: 5px solid #18bc9c;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 46px;
+    background-color: #2c3e50;
+    color: white;
+}
+
+.carousel-nav[b-z2y99z4d1x] {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+    .carousel-nav button[b-z2y99z4d1x] {
+        /*   background-color: #007bff; */
+        border: none;
+        color: white;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        outline: none;
+    }
+
+        .carousel-nav button:hover[b-z2y99z4d1x] {
+            background-color: #688aac;
+        }
+
+#nextBtn img[b-z2y99z4d1x], #prevBtn img[b-z2y99z4d1x] {
+    width: 40px;
+    /*   transform: translatex(-10%); */
+}
+
+#prevBtn img[b-z2y99z4d1x] {
+    /*  transform: rotate(180deg) translatex(-10%); */
+    transform: rotate(180deg);
+    position: relative;
+}
+
+.smiley[b-z2y99z4d1x] {
+    left: 375px !important;
+    transform: translateY(-25%)
+}
+
+.save-button[b-z2y99z4d1x] {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 17px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 6px;
+    margin-right: auto
+}
+
+    .save-button i[b-z2y99z4d1x] {
+        margin-right: 8px;
+    }
+
+.numeroForms[b-z2y99z4d1x] {
+    /*  left: 50%; */
+    text-align: center;
+    color: white;
+}
+
+#numForm[b-z2y99z4d1x] {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+/* _content/SistemaPesquisa/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+a.navbar-brand[b-4w589rg7h6] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-4w589rg7h6] {
+  color: #0077cc;
+}
+
+.btn-primary[b-4w589rg7h6] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active[b-4w589rg7h6], .nav-pills .show > .nav-link[b-4w589rg7h6] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top[b-4w589rg7h6] {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom[b-4w589rg7h6] {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-4w589rg7h6] {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy[b-4w589rg7h6] {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer[b-4w589rg7h6] {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
+body[b-4w589rg7h6] {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.logo_jayme_p[b-4w589rg7h6] {
+    width: 30px;
+    transform: translateX(6px)
+}
+.sidebar[b-4w589rg7h6] {
+    max-width: 10.5vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: #2c3e50;
+    color: white;
+    padding: 12px;
+    font-size: 14px;
+    position: fixed; /* Fixar a sidebar para que ela fique visível o tempo todo */
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+    z-index: 5;
+}
+
+.sidebar.hidden[b-4w589rg7h6] {
+    transform: translateX(-100%); /* Esconde a sidebar deslizando para fora */
+}
+
+.sidebar img[b-4w589rg7h6] {
+    max-width: 180px;
+    display: block;
+    margin: 0 auto 30px;
+}
+
+.sidebar .nav-item[b-4w589rg7h6] {
+    margin-bottom: 1rem;
+/*    text-align: center;*/
+
+}
+
+.sidebar .nav-link[b-4w589rg7h6] {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.sidebar .nav-link:hover[b-4w589rg7h6] {
+    background-color: #476481;
+}
+
+.main-content[b-4w589rg7h6] {
+    height: 90vh;
+    max-width: 75.5vw;
+    margin: auto;
+    padding: 20px;
+}
+
+.menu-toggle[b-4w589rg7h6] {
+    display: block; /* Inicialmente escondido */
+    font-size: 8px;
+    background: white;
+    border: none;
+    color: black;
+    cursor: pointer;
+    padding: 8px;
+    position: fixed;
+    box-shadow: 1px 1px 1px 2px black;
+    top: 10px;
+    left: 10px;
+    z-index: 1000; /* Para garantir que o botão fique sobre a sidebar */
+}
+.escondido[b-4w589rg7h6] {
+    transform: translateX(-100%); /* Inicialmente escondido */
+}
+.mostrar[b-4w589rg7h6] {
+    transform: translateX(0.1px); /* Inicialmente escondido */
+}
+
+/* Estilos para ícones */
+.nav-link i[b-4w589rg7h6] {
+    font-size: 1.5rem; /* Ajuste o tamanho do ícone conforme necessário */
+}
+
+/* Oculta texto em telas pequenas e mostra ícones */
+@media (max-width: 1590px) {
+    .nav-link span[b-4w589rg7h6], .navbar-brand .logo_jayme[b-4w589rg7h6] {
+        display: none;
+    }
+    .nav-link i[b-4w589rg7h6], .navbar-brand .logo_jayme_p[b-4w589rg7h6] {
+        display: inline;
+    }
+    .sidebar[b-4w589rg7h6] {
+        max-width: 14.5vw;
+    }
+}
+
+/* Mostra texto em telas maiores e oculta ícones */
+@media (min-width: 1591px) {
+    .nav-link span[b-4w589rg7h6], .navbar-brand .logo_jayme[b-4w589rg7h6] {
+        display: inline;
+    }
+
+    .nav-link i[b-4w589rg7h6], .navbar-brand .logo_jayme_p[b-4w589rg7h6] {
+        display: none;
+    }
+}
+
+
+

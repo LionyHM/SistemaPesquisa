@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SistemaPesquisa.Models.Pesquisa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="main">
+    <h4 class="mb-5">Pesquisas</h4>
+    <h3>@ViewData["message"]</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Ano da pesquisa
+                </th>
+                <th>
+                    Finalizado
+                </th>
+                <th>
+                    Meta
+                </th>
+                <th>
+                    Data de criação
+                </th>
+                <th>
+                    Data da atualização
+                </th>
+                <th>
+                    Opções
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnoPesquisa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Finalizado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Meta)%
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataCriacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataAtualizacao)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>
+
