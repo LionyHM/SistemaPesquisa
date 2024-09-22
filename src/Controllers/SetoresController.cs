@@ -19,7 +19,7 @@ public class SetoresController : Controller
     {
         _context = context;
         _accountRepository = accountRepository;
-       
+
     }
 
     // GET: Setores
@@ -43,7 +43,7 @@ public class SetoresController : Controller
         {
             return NotFound();
         }
-    
+
         return View(setor);
     }
 

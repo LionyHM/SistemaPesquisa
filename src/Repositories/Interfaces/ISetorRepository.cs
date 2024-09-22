@@ -6,6 +6,6 @@ public interface ISetorRepository
 {
     IEnumerable<Setor> Setores { get; }
     IEnumerable<Setor> SetoresAtivos { get; }
-    
+
     Setor GetSetorUsuario(string id);
 }

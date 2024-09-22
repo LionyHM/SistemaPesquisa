@@ -16,7 +16,7 @@ public class SetorService
     {
         return _context.Setor.ToList();
     }
-      public List<Setor> FindByUser(string id)
+    public List<Setor> FindByUser(string id)
     {
         return _context.Setor.Where(s => s.Usuario.Id == id).ToList();
     }

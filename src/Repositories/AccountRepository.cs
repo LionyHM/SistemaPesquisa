@@ -23,9 +23,9 @@ public class AccountRepository : IAccountRepository
         List<IdentityUser> users = _context.Users.ToList();
         foreach (IdentityUser user in users)
         {
-            if(_setorRepository.GetSetorUsuario(user.Id) == null && !user.UserName.Contains("admin"))
+            if (_setorRepository.GetSetorUsuario(user.Id) == null && !user.UserName.Contains("admin"))
             {
-                 usersSemSetor.Add(user);
+                usersSemSetor.Add(user);
             }
         }
 

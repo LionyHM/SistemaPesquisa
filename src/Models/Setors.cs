@@ -1,5 +1,5 @@
-using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace SistemaPesquisa.Models;
 
@@ -13,8 +13,8 @@ public class Setor : DataBase
     public string Nome { get; set; }
     public bool Ativo { get; set; } = true;
 
-    public ICollection<Formulario>? Formularios { get; set;} = new List<Formulario>();
-    public IdentityUser Usuario { get; set;}
+    public ICollection<Formulario>? Formularios { get; set; } = new List<Formulario>();
+    public IdentityUser Usuario { get; set; }
 
     public Setor() { }
 

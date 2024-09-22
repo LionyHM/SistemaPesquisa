@@ -6,7 +6,7 @@ public class Pesquisa : DataBase
     public string AnoPesquisa { get; set; } = DateTime.Now.Year.ToString();
     public bool Finalizado { get; set; } = false;
 
-    public int Meta {  get; set; }
+    public int Meta { get; set; }
 
     public ICollection<Formulario> Formularios { get; set; } = new List<Formulario>();
     public Pesquisa() { }

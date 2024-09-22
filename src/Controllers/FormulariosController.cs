@@ -10,7 +10,7 @@ namespace SistemaPesquisa.Controllers;
 public class FormulariosController : Controller
 {
     private readonly SistemaPesquisaContext _context;
-    private readonly IFormularioRepository   _formularioRepository;
+    private readonly IFormularioRepository _formularioRepository;
     private readonly FormularioService _formularioService;
 
     public FormulariosController(SistemaPesquisaContext context, FormularioService formularioservice, IFormularioRepository formularioRepository)
@@ -21,7 +21,7 @@ public class FormulariosController : Controller
     }
 
     // GET: Formularios
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
     {
         var formularios = _formularioRepository.Formularios.ToList();
         return View(formularios);
@@ -105,7 +105,7 @@ public class FormulariosController : Controller
         {
             return NotFound();
         }
-       // Atualiza o formulário com os novos dados
+        // Atualiza o formulário com os novos dados
         formularioRepos.Nota = formulario.Nota;
         formularioRepos.Salvo = formulario.Salvo;
         formularioRepos.NaoSeAplica = formulario.NaoSeAplica;

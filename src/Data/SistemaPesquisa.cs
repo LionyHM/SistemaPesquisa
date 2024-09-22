@@ -7,7 +7,7 @@ namespace SistemaPesquisa.Data
 {
     public class SistemaPesquisaContext : IdentityDbContext<IdentityUser>
     {
-        public SistemaPesquisaContext (DbContextOptions<SistemaPesquisaContext> options)
+        public SistemaPesquisaContext(DbContextOptions<SistemaPesquisaContext> options)
             : base(options)
         {
         }

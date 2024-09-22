@@ -7,23 +7,23 @@ public class SeedUserRoleInitial : ISeedUserRoleInitial
 {
     private readonly UserManager<IdentityUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
-    
+
     public SeedUserRoleInitial(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
     {
         _userManager = userManager;
         _roleManager = roleManager;
     }
-    
+
     public void SeedRoles()
     {
-        if(!_roleManager.RoleExistsAsync("Membro").Result)
+        if (!_roleManager.RoleExistsAsync("Membro").Result)
         {
             IdentityRole role = new IdentityRole();
             role.Name = "Membro";
             role.NormalizedName = "MEMBRO";
             IdentityResult roleResult = _roleManager.CreateAsync(role).Result;
         }
-        if(!_roleManager.RoleExistsAsync("Admin").Result)
+        if (!_roleManager.RoleExistsAsync("Admin").Result)
         {
             IdentityRole role = new IdentityRole();
             role.Name = "Admin";
@@ -34,7 +34,7 @@ public class SeedUserRoleInitial : ISeedUserRoleInitial
 
     public void SeedUsers()
     {
-        if(_userManager.FindByEmailAsync("usuario@localhost").Result == null)
+        if (_userManager.FindByEmailAsync("usuario@localhost").Result == null)
         {
             IdentityUser user = new IdentityUser();
             user.UserName = "usuario@localhost";
@@ -46,13 +46,13 @@ public class SeedUserRoleInitial : ISeedUserRoleInitial
 
             IdentityResult result = _userManager.CreateAsync(user, "12345678").Result;
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 _userManager.AddToRoleAsync(user, "Membro").Wait();
             }
         }
 
-        if(_userManager.FindByEmailAsync("admin").Result == null)
+        if (_userManager.FindByEmailAsync("admin").Result == null)
         {
             IdentityUser user = new IdentityUser();
             user.UserName = "admin";
@@ -64,7 +64,7 @@ public class SeedUserRoleInitial : ISeedUserRoleInitial
 
             IdentityResult result = _userManager.CreateAsync(user, "Teste.123").Result;
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 _userManager.AddToRoleAsync(user, "Admin").Wait();
             }

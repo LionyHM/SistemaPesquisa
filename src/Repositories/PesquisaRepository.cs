@@ -4,7 +4,7 @@ using SistemaPesquisa.Repositories.Interfaces;
 
 namespace SistemaPesquisa.Repositories;
 
-public class PesquisaRepository : IPesquisaRepository 
+public class PesquisaRepository : IPesquisaRepository
 {
     private readonly SistemaPesquisaContext _context;
 

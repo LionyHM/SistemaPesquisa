@@ -26,8 +26,8 @@ public class FormularioRepository : IFormularioRepository
                         .Include(i => i.ItemFormularios)
                         .Include(s => s.Setor)
                         .FirstOrDefault();
-                        
-                        
+
+
         ItemFormulario itemForm = _context.ItemFormulario.Where(i => i.Formulario.Id == form.Id && i.Setor.Id == idSetor).FirstOrDefault();
 
         return itemForm;

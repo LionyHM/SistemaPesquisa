@@ -30,10 +30,10 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddDefaultTokenProviders();
 
 
-builder.Services.AddAuthorization(option => 
+builder.Services.AddAuthorization(option =>
 {
     option.AddPolicy("Admin",
-        politica => 
+        politica =>
         {
             politica.RequireRole("Admin");
         });

@@ -77,7 +77,7 @@ public class PesquisasController : Controller
         ViewBag.StyleMessage = "text-info";
         List<Setor> setores = _setorService.FindAll();
         _formularioService.AddFormularios(setores, pesquisa);
-        
+
 
         if (ModelState.IsValid)
         {
@@ -87,7 +87,7 @@ public class PesquisasController : Controller
         ViewData["message"] = "Pesquisa Criada com sucesso!";
 
         return View();
-       
+
     }
 
     // GET: Pesquisas/Edit/5
@@ -119,24 +119,24 @@ public class PesquisasController : Controller
         }
 
 
-            try
+        try
+        {
+            _context.Update(pesquisa);
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!PesquisaExists(pesquisa.Id))
             {
-                _context.Update(pesquisa);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
+            else
             {
-                if (!PesquisaExists(pesquisa.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
-            return RedirectToAction(nameof(Index));
-    
+        }
+        return RedirectToAction(nameof(Index));
+
     }
 
     // GET: Pesquisas/Delete/5
@@ -162,7 +162,7 @@ public class PesquisasController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-   //     var formulario
+        //     var formulario
 
         var pesquisa = await _context.Pesquisa.FindAsync(id);
         if (pesquisa != null)
