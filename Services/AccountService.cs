@@ -1,23 +1,21 @@
 using Microsoft.AspNetCore.Identity;
 using SistemaPesquisa.Data;
-using SistemaPesquisa.Models;
 
-namespace SistemaPesquisa.Services
+namespace SistemaPesquisa.Services;
+
+public class AccountService
 {
-    public class AccountService
+    private readonly SistemaPesquisaContext _context;
+
+    public AccountService(SistemaPesquisaContext context)
     {
-        private readonly SistemaPesquisaContext _context;
+        _context = context;
+    }
 
-        public AccountService(SistemaPesquisaContext context)
-        {
-            _context = context;
-        }
-
-        public List<IdentityUser> GetAccounts()
-        {
-            List<IdentityUser> accounts = _context.Users.ToList();
-            return accounts;
-        }
+    public List<IdentityUser> GetAccounts()
+    {
+        List<IdentityUser> accounts = _context.Users.ToList();
+        return accounts;
     }
 }
 

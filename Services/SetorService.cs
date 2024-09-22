@@ -1,25 +1,23 @@
-﻿using Microsoft.AspNetCore.Identity;
-using SistemaPesquisa.Data;
+﻿using SistemaPesquisa.Data;
 using SistemaPesquisa.Models;
 
-namespace SistemaPesquisa.Services
+namespace SistemaPesquisa.Services;
+
+public class SetorService
 {
-    public class SetorService
+    private readonly SistemaPesquisaContext _context;
+
+    public SetorService(SistemaPesquisaContext context)
     {
-        private readonly SistemaPesquisaContext _context;
+        _context = context;
+    }
 
-        public SetorService(SistemaPesquisaContext context)
-        {
-            _context = context;
-        }
-
-        public List<Setor> FindAll()
-        {
-            return _context.Setor.ToList();
-        }
-          public List<Setor> FindByUser(string id)
-        {
-            return _context.Setor.Where(s => s.Usuario.Id == id).ToList();
-        }
+    public List<Setor> FindAll()
+    {
+        return _context.Setor.ToList();
+    }
+      public List<Setor> FindByUser(string id)
+    {
+        return _context.Setor.Where(s => s.Usuario.Id == id).ToList();
     }
 }

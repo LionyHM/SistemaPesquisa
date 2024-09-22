@@ -1,8 +1,7 @@
-namespace SistemaPesquisa.Services.Interfaces
+namespace SistemaPesquisa.Services.Interfaces;
+
+public interface ISeedUserRoleInitial
 {
-    public interface ISeedUserRoleInitial
-    {
-        void SeedRoles();
-        void SeedUsers();
-    }
+    void SeedRoles();
+    void SeedUsers();
 }

@@ -1,9 +1,8 @@
 ﻿using SistemaPesquisa.Models;
 
-namespace SistemaPesquisa.Repositories.Interfaces
+namespace SistemaPesquisa.Repositories.Interfaces;
+
+public interface IItemFormularioRepository
 {
-    public interface IItemFormularioRepository
-    {
-        IEnumerable<ItemFormulario> ItemsFormulario { get; }
-    }
+    IEnumerable<ItemFormulario> ItemsFormulario { get; }
 }

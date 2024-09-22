@@ -1,54 +1,44 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SistemaPesquisa.Data;
+﻿using SistemaPesquisa.Data;
 using SistemaPesquisa.Models;
-using System.Collections.Generic;
 
-namespace SistemaPesquisa.Services
+namespace SistemaPesquisa.Services;
+
+public class FormularioService
 {
-    public class FormularioService
+    private readonly SistemaPesquisaContext _context;
+    private readonly ItemFormularioService _itemformularioService;
+
+    public FormularioService(SistemaPesquisaContext context, ItemFormularioService itemformularioService)
     {
+        _context = context;
+        _itemformularioService = itemformularioService;
+    }
 
-        private readonly SistemaPesquisaContext _context;
-        private readonly ItemFormularioService _itemformularioService;
-
-        public FormularioService(SistemaPesquisaContext context, ItemFormularioService itemformularioService)
+    public void AddFormularios(List<Setor> setores, Pesquisa pesquisa)
+    {
+        List<Formulario> listFormulario = new List<Formulario>();
+        foreach (var setor in setores)
         {
-            _context = context;
-            _itemformularioService = itemformularioService;
-        }
+            Formulario formulario = new Formulario();
+            formulario.Titulo = setor.Nome;
+            formulario.Setor = setor;
+            formulario.Pesquisa = pesquisa;
 
-        public void AddFormularios(List<Setor> setores, Pesquisa pesquisa)
-        {
-            List<Formulario> listFormulario = new List<Formulario>();
-            foreach (var setor in setores)
-            {
-                Formulario formulario = new Formulario();
-                formulario.Titulo = setor.Nome;
-                formulario.Setor = setor;
-                formulario.Pesquisa = pesquisa;
+            _context.Add(formulario);
+            _context.SaveChanges();
 
-
-
-                _context.Add(formulario);
-                _context.SaveChanges();
-
-                listFormulario.Add(formulario);
-
-            }
-               this.SaveItemsFormularios(listFormulario);
+            listFormulario.Add(formulario);
 
         }
+        SaveItemsFormularios(listFormulario);
+    }
 
-        public void SaveItemsFormularios(List<Formulario> listFormulario)
+    public void SaveItemsFormularios(List<Formulario> listFormulario)
+    {
+        foreach (var list in listFormulario)
         {
-            foreach (var list in listFormulario)
-            {
-                List<Formulario> formularios = _context.Formulario.Where(form => form.Id != list.Id && form.Finalizado == false).ToList();
-                _itemformularioService.AddItemFormulario(formularios, list.Setor);
-
-            }
+            List<Formulario> formularios = _context.Formulario.Where(form => form.Id != list.Id && form.Finalizado == false).ToList();
+            _itemformularioService.AddItemFormulario(formularios, list.Setor);
         }
-
-  
     }
 }

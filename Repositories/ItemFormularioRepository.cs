@@ -2,17 +2,16 @@ using SistemaPesquisa.Data;
 using SistemaPesquisa.Models;
 using SistemaPesquisa.Repositories.Interfaces;
 
-namespace SistemaPesquisa.Repositories
+namespace SistemaPesquisa.Repositories;
+
+public class ItemFormularioRepository : IItemFormularioRepository
 {
-    public class ItemFormularioRepository : IItemFormularioRepository
+    private readonly SistemaPesquisaContext _context;
+
+    public ItemFormularioRepository(SistemaPesquisaContext context)
     {
-        private readonly SistemaPesquisaContext _context;
-
-        public ItemFormularioRepository(SistemaPesquisaContext context)
-        {
-            _context = context;
-        }
-
-        public IEnumerable<ItemFormulario> ItemsFormulario => _context.ItemFormulario;
+        _context = context;
     }
+
+    public IEnumerable<ItemFormulario> ItemsFormulario => _context.ItemFormulario;
 }

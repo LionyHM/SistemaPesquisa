@@ -1,10 +1,9 @@
 using SistemaPesquisa.Models;
 
-namespace SistemaPesquisa.Repositories.Interfaces
+namespace SistemaPesquisa.Repositories.Interfaces;
+
+public interface IPesquisaRepository
 {
-    public interface IPesquisaRepository
-    {
-        IEnumerable<Pesquisa> Pesquisas { get; }
-        Pesquisa PesquisaAtiva { get; }
-    }
+    IEnumerable<Pesquisa> Pesquisas { get; }
+    Pesquisa PesquisaAtiva { get; }
 }

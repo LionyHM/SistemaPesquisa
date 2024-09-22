@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using SistemaPesquisa.Data;
 using SistemaPesquisa.Repositories;
 using SistemaPesquisa.Repositories.Interfaces;
@@ -90,6 +88,5 @@ void CriarPerfisUsuarios(WebApplication app)
         var service = scope.ServiceProvider.GetService<ISeedUserRoleInitial>();
         service.SeedRoles();
         service.SeedUsers();
-        
     }
 }
